@@ -1,2 +1,2 @@
 # automated-db-backups
-Scripts that encompass database backups and deletion of db files older than 30 days for PostgreSQL.
+Couple of scripts that I wrote. They encompass database backup and deletion of database files older than 30 days - for PostgreSQL.
