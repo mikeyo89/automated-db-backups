@@ -1,0 +1,19 @@
+import os
+import sys
+import time
+import shutil
+
+def main():
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    path = BASE_DIR + '/sos/DB_Backup/' # Change directory to where backups are stored.
+    now = time.time()
+    DAYS = 86400 # Total seconds in a day.
+
+    for filename in os.listdir(path):
+        if os.path.getmtime(os.path.join(path, filename)) < now - 30 * DAYS: # Files last modified 30 days ago are removed.
+            if os.path.isfile(os.path.join(path, filename)):
+                os.remove(os.path.join(path, filename))
+    for dirs in os.listdir(path):
+        if os.path.getmtime(os.path.join(path, dirs)) < now - 30 * DAYS: # Folders (and its contents) last modified 30 days ago are removed.
+            if os.path.isdir(os.path.join(path, dirs)):
+                shutil.rmtree(os.path.join(path, dirs))
